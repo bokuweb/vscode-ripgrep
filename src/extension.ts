@@ -8,8 +8,6 @@ interface QuickPickItemWithPath extends QuickPickItem {
   fullPath: string;
 }
 
-const blackList = ["-h", "--help", "-V", "--version"];
-
 const projectRoot = workspace.rootPath ? workspace.rootPath : ".";
 
 function fetchItems(command: string, projectRoot: string): Promise<QuickPickItemWithPath[]> {
@@ -28,16 +26,21 @@ function fetchItems(command: string, projectRoot: string): Promise<QuickPickItem
         return resolve([]);
       }
       return resolve(
-        lines.map(l => {
-          const [fullPath, line, ...desc] = l.split(":");
-          const path = fullPath.split("/");
-          return {
-            label: `${path[path.length - 1]} : ${line}`,
-            description: desc.join(":").trim(),
-            detail: fullPath,
-            fullPath: l,
-          };
-        }),
+        lines
+          .filter(l => {
+            const [, line] = l.split(":");
+            return typeof line !== "undefined";
+          })
+          .map(l => {
+            const [fullPath, line, ...desc] = l.split(":");
+            const path = fullPath.split("/");
+            return {
+              label: `${path[path.length - 1]} : ${line}`,
+              description: desc.join(":").trim(),
+              detail: fullPath,
+              fullPath: l,
+            };
+          }),
       );
     });
   });
@@ -49,7 +52,7 @@ export function activate(context: ExtensionContext) {
       const query = await window.showInputBox({
         prompt: "Please input search word.",
       });
-      const command = quote([require("vscode-ripgrep").rgPath, "-n", ...query.split(" ").filter(q => blackList.indexOf(q) === -1)]);
+      const command = quote([require("vscode-ripgrep").rgPath, "-n", ...query.split(" ")]);
       const options: QuickPickOptions = { matchOnDescription: true };
       const item = await window.showQuickPick(fetchItems(command, projectRoot), options);
       if (!item) return;

@@ -12,6 +12,10 @@ A ripgrep extension for Visual Studio Code.
 
 ## Release Notes
 
+### 0.1.2
+
+- fix: filter invalid data
+
 ### 0.1.1
 
 - fix: ignore some options.
