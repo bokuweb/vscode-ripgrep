@@ -2,7 +2,7 @@
   "name": "vscode-ripgrep",
   "displayName": "vscode-ripgrep",
   "description": "ripgrep for vscode",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "publisher": "bokuweb",
   "engines": {
     "vscode": "^1.6.0"
@@ -22,7 +22,7 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:extension.ripGrep"
+    "onCommand:extension.ripgrep"
   ],
   "main": "./out/src/extension",
   "contributes": {
