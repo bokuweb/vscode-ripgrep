@@ -55,7 +55,7 @@ function fetchItems(command: string, projectRoot: string): Promise<QuickPickItem
 
 export function activate(context: ExtensionContext) {
   (async () => {
-    const disposable = commands.registerCommand("extension.ripGrep", async () => {
+    const disposable = commands.registerCommand("extension.ripgrep", async () => {
       const query = await window.showInputBox({
         prompt: "Please input search word.",
       });

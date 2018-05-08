@@ -2,7 +2,7 @@
   "name": "vscode-ripgrep",
   "displayName": "vscode-ripgrep",
   "description": "ripgrep for vscode",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "publisher": "bokuweb",
   "engines": {
     "vscode": "^1.6.0"
