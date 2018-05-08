@@ -12,6 +12,11 @@ A ripgrep extension for Visual Studio Code.
 
 ## Release Notes
 
+### 0.2.1
+
+- fix: rename `ripGrep` to `ripgrep`
+- fix: fixed a bug, options is not parsed properly. 
+
 ### 0.1.2
 
 - fix: filter invalid data
